@@ -1,0 +1,1 @@
+# minidicbitf12m510
