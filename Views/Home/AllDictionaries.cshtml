@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "AllDictionaries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["id"] == null && Session["Type"] != "User")
+{
+
+    Response.Redirect("/Account/Login");
+
+}
+@using Mini_Dic.Models
+@model Mini_Dic.Models.User
+@{
+    int id = (int)Session["id"];
+}
+<div class="container">
+    <div class="box">
+        <div class="col-lg-12">
+            <hr>
+            <h2 class="intro-text text-center" style="font-family:'Comic Sans MS'">
+                <strong>Dictionaries</strong>
+            </h2>
+            <hr>
+            <br />
+            <div style="font-family:'Comic Sans MS';font-size:20px;padding-left:400px">
+
+                @foreach(UserDictionary ud in Model.UserDictionaries)
+                {
+                    <div class="col-sm-4">
+                   <a href="/Home/UserDictionary?id=@ud.Id" style="color:black"> @ud.Name </a>
+
+                        </div>
+                    <form role="form" action="/Home/DeleteDic" method="post">
+
+                        <input type="hidden" value="@ud.Id" name="DicId" />
+                        <button class=" btn btn-danger" >Delete</button> 
+
+
+                    </form>
+                   <br />
+                   <br /> 
+                }
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+

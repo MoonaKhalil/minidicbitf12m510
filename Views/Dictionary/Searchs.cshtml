@@ -1,0 +1,292 @@
+﻿@{
+    ViewBag.Title = "Searchs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Mini_Dic.Models.Dictionary
+
+@using Mini_Dic.Models
+
+@{
+    Dictionary d = (Dictionary)Model;
+    Boolean count1 = true;
+    Boolean count = true;
+
+}
+
+<div class="container">
+
+    <div class="box">
+        <div class="col-lg-12">
+
+            <br />
+            <hr>
+
+            <h2 class="intro-text text-center " style="font-family:'Comic Sans MS'">
+                <strong>Word</strong>
+            </h2>
+            <hr>
+            <br />
+
+            <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left:420px">
+                Word
+                <br />
+                <strong style="padding-left:100px">@d.Words</strong>
+
+            </h1>
+
+            <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                Meaning
+
+                <br />
+                <strong style="padding-left:100px">@d.Meaning</strong>
+            </h1>
+
+            <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                Synonym
+
+                <br />
+                <strong style="padding-left:100px">@d.Synonyms</strong>
+
+            </h1>
+
+            <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                Part of Speech
+
+                <br />
+                <strong style="padding-left:100px">@d.PartOfSpeech</strong>
+
+            </h1>
+            <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                Sentence
+
+                <br />
+                <strong style="padding-left:100px">@d.Sentence</strong>
+
+            </h1>
+            <audio id="audio">
+                <source src="~/audios/@d.Audio" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px;padding-left:420px">
+
+                Audio
+
+                <br />
+                <a onclick="document.getElementById('audio').play()">
+                    <i class="glyphicon glyphicon-music" style="padding-left:100px"></i>
+                </a>
+            </h1>
+
+
+
+        </div>
+        @if (d == null)
+        {
+            <div class="alert alert-info" style="margin-left:340px;padding-left:50px;width:400px">
+                <strong>Info!</strong> No such word found.Try another
+            </div>
+
+
+        }
+
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div class="box">
+        <div class="col-lg-12">
+            <br />
+            <hr>
+
+            <h2 class="intro-text text-center " style="font-family:'Comic Sans MS'">
+                <strong>Synonym</strong>
+            </h2>
+            <hr>
+            <br />
+            @foreach (var a in ViewBag.List)
+            {
+                count = false;
+                <hr>
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left:420px">
+                    Word
+                    <br />
+                    <strong style="padding-left:100px">@a.Words</strong>
+
+                </h1>
+
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                    Meaning
+
+                    <br />
+                    <strong style="padding-left:100px">@a.Meaning</strong>
+                </h1>
+
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                    Synonym
+
+                    <br />
+                    <strong style="padding-left:100px">@a.Synonyms</strong>
+
+                </h1>
+
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                    Part of Speech
+
+                    <br />
+                    <strong style="padding-left:100px">@a.PartOfSpeech</strong>
+
+                </h1>
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                    Sentence
+
+                    <br />
+                    <strong style="padding-left:100px">@a.Sentence</strong>
+
+                </h1>
+                <audio id="audio">
+                    <source src="~/audios/@a.Audio" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px;padding-left:420px">
+
+                    Audio
+
+                    <br />
+                    <a onclick="document.getElementById('audio').play()">
+                        <i class="glyphicon glyphicon-music" style="padding-left:100px"></i>
+                    </a>
+                </h1>
+                <hr>
+                <br />
+                <br />
+
+            }
+
+            @if (count == true)
+            {
+
+                <div class="alert alert-info" style="margin-left:360px;padding-left:50px;width:400px">
+                    <strong>Info!</strong> No such synonym.
+                </div>
+
+            }
+
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="box">
+        <div class="col-lg-12">
+
+            <br />
+            <hr>
+
+            <h2 class="intro-text text-center " style="font-family:'Comic Sans MS'">
+                <strong>Part of Speech</strong>
+            </h2>
+            <hr>
+            <br />       
+            @foreach (var b in ViewBag.Lists)
+            {
+
+                count1 = false;
+                <hr>
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left:420px">
+                    Word
+                    <br />
+                    <strong style="padding-left:100px">@b.Words</strong>
+
+                </h1>
+
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                    Meaning
+
+                    <br />
+                    <strong style="padding-left:100px">@b.Meaning</strong>
+                </h1>
+
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                    Synonym
+
+                    <br />
+                    <strong style="padding-left:100px">@b.Synonyms</strong>
+
+                </h1>
+
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                    Part of Speech
+
+                    <br />
+                    <strong style="padding-left:100px">@b.PartOfSpeech</strong>
+
+                </h1>
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px; padding-left: 420px">
+
+                    Sentence
+
+                    <br />
+                    <strong style="padding-left:100px">@b.Sentence</strong>
+
+                </h1>
+                <audio id="audio">
+                    <source src="~/audios/@b.Audio" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 20px;padding-left:420px">
+
+                    Audio
+
+                    <br />
+                    <a onclick="document.getElementById('audio').play()">
+                        <i class="glyphicon glyphicon-music" style="padding-left:100px"></i>
+                    </a>
+                </h1>
+                <hr>
+                <br />
+                <br />
+
+            }
+
+
+            @if (count1 == true)
+            {
+
+                <div class="alert alert-info" style="margin-left:360px;padding-left:50px;width:400px">
+                    <strong>Info!</strong> Not a part of speech.
+                </div>
+
+            }
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+

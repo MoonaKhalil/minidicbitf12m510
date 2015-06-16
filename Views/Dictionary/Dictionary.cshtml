@@ -1,0 +1,211 @@
+﻿@{
+    ViewBag.Title = "Dictionary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Mini_Dic.Models
+    <div class="container">
+        <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center" style="font-family:'Comic Sans MS'">
+                        <strong>Dictionary</strong>
+                    </h2>
+                    <hr>
+                    <br />
+                </div>
+
+                @{
+                    
+                     
+                    List<Dictionary> dicList = ViewBag.Dic;
+                    int le = dicList.Count;
+                     
+                }
+                @for (int i = 0; i < le; i++)
+                {
+                    Dictionary dic = dicList[i];
+                    
+                    <div class="row">
+                    <div style="padding-left:220px">
+                    <div class="col-sm-4">
+
+                        <div class="dropdown">
+                            <span data-toggle="dropdown" class="dropdown-toggle" id="dropdownMenu1" aria-expanded="true">
+                                <a style="font-family: 'Comic Sans MS'; font-size: 20px; color: black" data-toggle="tooltip" title="Click to see description">@dic.Words</a>
+                            </span>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu4">
+                                <li role="presentation">
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px; padding-left: 10px">
+
+                                        Meaning
+
+                                        <br />
+                                        <strong style="padding-left:100px">@dic.Meaning</strong>
+
+                                    </h1>
+                                </li>
+                                <li role="presentation">
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px; padding-left: 10px">
+
+                                        Synonym
+
+                                        <br />
+                                        <strong style="padding-left:100px">@dic.Synonyms</strong>
+
+                                    </h1>
+                                    </li>
+                                <li role="presentation">
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px; padding-left: 10px">
+
+                                        Part of Speech
+
+                                        <br />
+                                        <strong style="padding-left:100px">@dic.PartOfSpeech</strong>
+
+                                    </h1>
+                                    </li>
+                                <li role="presentation">
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px; padding-left: 10px">
+
+                                        Sentence
+
+                                        <br />
+                                        <strong style="padding-left:100px">@dic.Sentence</strong>
+
+                                    </h1>
+                                    </li>
+                                <li role="presentation">
+                                    <audio id="audio">
+                                        <source src="~/audios/@dic.Audio" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px;padding-left:10px">
+
+                                        Audio
+
+                                        <br />
+                                        <a onclick="document.getElementById('audio').play()">
+                                            <i class="glyphicon glyphicon-music" style="padding-left:100px"></i>
+                                        </a>
+                                    </h1>
+                                    </li>
+                                @if (Session["Type"] != "Admin")
+                                {
+                                <li role="presentation">
+                                    <form action="/Dictionary/AddUserWord" method="get">
+
+                                        <input type="hidden" value="@dic.Id" name="WordId" />
+                                        
+                                        <button type="submit" class="btn btn-primary" style="margin-left:350px" name="AddWord" value="AddWord">Add</button>
+
+                                    </form>
+                                    
+                                </li> 
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                        
+                @{
+                    i++;
+                    
+                    if (i != le )
+                    {
+                        Dictionary dic2 = dicList[i];
+                        
+                        <div style="padding-left:650px">
+                    <div class="col-sm-6">
+
+                        <div class="dropdown">
+                            <span data-toggle="dropdown" class="dropdown-toggle" id="dropdownMenu1" aria-expanded="true">
+                                <a style="font-family: 'Comic Sans MS'; font-size: 20px; color: black" data-toggle="tooltip" title="Click to see description">@dic2.Words</a>
+                            </span>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu4">
+                                <li role="presentation">
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px; padding-left: 10px">
+
+                                        Meaning
+
+                                        <br />
+                                        <strong style="padding-left:100px">@dic2.Meaning</strong>
+
+                                    </h1>
+                                </li>
+                                <li role="presentation">
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px; padding-left: 10px">
+
+                                        Synonym
+
+                                        <br />
+                                        <strong style="padding-left:100px">@dic2.Synonyms</strong>
+
+                                    </h1>
+                                </li>
+                                <li role="presentation">
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px; padding-left: 10px">
+
+                                        Part of Speech
+
+                                        <br />
+                                        <strong style="padding-left:100px">@dic2.PartOfSpeech</strong>
+
+                                    </h1>
+                                </li>
+                                <li role="presentation">
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px; padding-left: 10px">
+
+                                        Sentence
+
+                                        <br />
+                                        <strong style="padding-left:100px">@dic2.Sentence</strong>
+
+                                    </h1>
+                                </li>
+                                <li role="presentation">
+                                    <audio id="audio">
+                                        <source src="~/audios/@dic2.Audio" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                    <h1 class="text" style="font-family: 'Comic Sans MS'; font-size: 15px;padding-left:10px">
+
+                                        Audio
+
+                                        <br />
+                                        <a onclick="document.getElementById('audio').play()">
+                                            <i class="glyphicon glyphicon-music" style="padding-left:100px"></i>
+                                        </a>
+                                    </h1>
+                                </li>
+                                @if (Session["Type"] != "Admin")
+                                {
+                                    <li role="presentation">
+                                        <form action="/Dictionary/AddUserWord" method="get">
+
+                                            <input type="hidden" value="@dic2.Id" name="WordId" />
+
+                                            <button type="submit" class="btn btn-primary" style="margin-left:350px" name="AddWord" value="AddWord">Add</button>
+
+                                        </form>
+
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                    }
+                }
+                
+            </div>
+                }
+
+        </div>
+    </div>
+    
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

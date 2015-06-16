@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8ec6b35e3e5b44d5a0a668fd825c318a" Name="Diagram1">
+        <EntityTypeShape EntityType="MiniDicDataModel.Dictionary" Width="1.5" PointX="1.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiniDicDataModel.User" Width="1.5" PointX="1.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiniDicDataModel.UserWord" Width="1.5" PointX="7.875" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="MiniDicDataModel.WordID" ManuallyRouted="false" />
+        <AssociationConnector Association="MiniDicDataModel.UserID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MiniDicDataModel.UserDictionary" Width="1.5" PointX="7.5" PointY="4.125" />
+        <AssociationConnector Association="MiniDicDataModel.UDicF" />
+        <AssociationConnector Association="MiniDicDataModel.UserDicF" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Session["id"] != null)
+{
+
+    Response.Redirect("/Home/Index");
+}
+@{
+
+    var error = ViewBag.Error;
+}
+
+    <div class="container" >
+
+        <div class="box">
+
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center" style="font-family:'Comic Sans MS'">
+                    Register
+                    <strong>YourSelf</strong>
+                </h2>
+                <hr>
+                <br />
+                @if (error == "1")
+                {
+                    <div id="error">
+                        <div class="alert" style="width:200px">
+                            <strong style="color:black;font-size:11px">User Name already exists</strong>
+                        </div>
+
+                    </div>
+
+                }else if(error == "2")
+                {
+                
+                <div id="error">
+                        <div class="alert" style="width:200px">
+                            <strong style="color:black;font-size:11px">eamail already exists</strong>
+                        </div>
+
+                    </div>
+                
+                
+                }else if(error == "3")
+                {
+                
+                <div id="error">
+                        <div class="alert" style="width:200px">
+                            <strong style="color:black;font-size:11px">User Name and eamil already exists</strong>
+                        </div>
+
+                    </div>
+                
+                
+                }else if(error == "4")
+                {
+                
+                <div id="error">
+                        <div class="alert" style="width:200px">
+                            <strong style="color:black;font-size:11px">Wrong file uplaoded</strong>
+                        </div>
+
+                    </div>
+                
+                
+                }
+                <form role="form" method="post" action="/Account/RegisterRequest" enctype="multipart/form-data">
+                    <div class=" search-text">
+                        <label>Upload Picture</label>
+                        <div class="inner-addon left-addon">
+                            <img class="img-circle" src="/images/user.jpg" style="margin-left:120px" width="160" height="160" alt="Upload image " />
+                        </div>
+                        <br />
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-picture"></i>
+                            <input required type="file" class="form-control" style="width:400px" name="Picture" />
+                        </div>
+                        <br />
+                        <label>User Name</label>
+                        <div id="checking">Checking...</div>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input required type="text" id="UserName" class="form-control" style="width:400px" placeholder="user name" name="Name" />
+                        </div>
+                            <button type="button" class="btn btn-primary"  style="margin-left:360px" id="b1" name="b1" value="CHECK"><i class="glyphicon glyphicon-user"></i></button>
+                            <div id="result"></div>
+                            @Scripts.Render("~/bundles/jquery")
+                            <script>
+
+                                $(document).ready(function () {
+
+                                    $('#checking').hide();
+
+                                    $('#b1').click(function () {
+
+                                        var userName = $('#UserName').val();
+
+                                        //alert('User Name ='+ userName);
+                                        $('#checking').show();
+                                        $.getJSON("/Account/CheckUserName?UserName=" + userName, function (data) {
+                                            $('#checking').hide();
+                                            if (data) {
+                                                $('#result').text("User already exists ");
+
+                                            }
+                                            else {
+                                                $('#result').text("User Name is available");
+                                            }
+                                        });
+
+                                    });
+
+                                });
+                            </script>
+                       
+                        <br />
+
+                        <label>Email</label>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <input required type="email" class="form-control" style="width:400px" placeholder="emial" name="Email" />
+                        </div>
+                        <br />
+                        <label>Password</label>
+                        <div class="inner-addon left-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+
+                            <input required type="password" class="form-control" style="width:400px" placeholder="password" name="Passwords" pattern=".{5,10}" title="5 to 10 characters" />
+                        </div>
+                        <br />
+                        <input type="hidden" name="Type" value="User" />
+                        <button type="submit" class="btn btn-primary" onclick="Validate()" style="margin-left:320px" name="register" value="register">Register</button>
+
+                        <div class="clearfix"></div>
+                        <div class="form-group col-lg-12">
+                            <input type="hidden">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
